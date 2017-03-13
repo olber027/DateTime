@@ -5,11 +5,8 @@ using namespace std;
 
 int main() {
 
-    DateTime day = DateTime(2016, 2,27,15,44,23);
+    DateTime day = DateTime::Now();
 
     cout << day.Date() << endl;
-    day.addDays(1);
-    cout << day.Date() << endl;
-
     return 0;
 }

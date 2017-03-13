@@ -7,6 +7,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <ctime>
 
 using namespace std;
 
@@ -153,6 +154,27 @@ public:
         }
         return false;
     }
+
+    void toLocalTime() {
+        //TODO: figure out how to localize
+    }
+
+    static DateTime Now() {
+        return DateTime(1970,1,1,0,0,time(NULL),0);
+    }
+
+    static DateTime LocalNow() {
+        DateTime currentTime = DateTime(1970,1,1,0,0,time(NULL),0);
+        currentTime.toLocalTime();
+        return currentTime;
+    }
+
+    friend ostream& operator>>(ostream& out, DateTime date) {
+
+        out << date.Date();
+        return out;
+    }
+
 
 private:
 
