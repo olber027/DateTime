@@ -37,32 +37,33 @@ public:
     int Millisecond() { return milliseconds; }
 
     void addYears(int Years) {
-        addTime(Years,0,0,0,0,0,0);
+        fastForward(Years, 0, 0, 0, 0, 0, 0);
     }
     void addMonths(int Months) {
-        addTime(0,Months,0,0,0,0,0);
+        fastForward(0, Months, 0, 0, 0, 0, 0);
     }
     void addWeeks(int Weeks) {
-        addTime(0,0,Weeks*7,0,0,0,0);
+        fastForward(0, 0, Weeks * 7, 0, 0, 0, 0);
     }
     void addDays(int Days) {
-        addTime(0,0,Days,0,0,0,0);
+        fastForward(0, 0, Days, 0, 0, 0, 0);
     }
     void addHours(int Hours) {
-        addTime(0,0,0,Hours,0,0,0);
+        fastForward(0, 0, 0, Hours, 0, 0, 0);
     }
     void addMinutes(int Minutes) {
-        addTime(0,0,0,0,Minutes,0,0);
+        fastForward(0, 0, 0, 0, Minutes, 0, 0);
     }
     void addSeconds(int Seconds) {
-        addTime(0,0,0,0,0,Seconds,0);
+        fastForward(0, 0, 0, 0, 0, Seconds, 0);
     }
     void addMilliseconds(int millis) {
-        addTime(0,0,0,0,0,0,millis);
+        fastForward(0, 0, 0, 0, 0, 0, millis);
     }
 
 
-    void addTime(int Years, int Months, int Days, int Hours, int Minutes, int Seconds, int Milliseconds) {
+
+    void fastForward(int Years, int Months, int Days, int Hours, int Minutes, int Seconds, int Milliseconds) {
         years += Years;
         months += Months;
         days += Days;
@@ -71,6 +72,17 @@ public:
         seconds += Seconds;
         milliseconds += Milliseconds;
         adjustTime();
+    }
+
+    void rewind(int Years, int Months, int Days, int Hours, int Minutes, int Seconds, int Milliseconds) {
+        years -= Years;
+        months -= Months;
+        days -= Days;
+        hours -= Hours;
+        minutes -= Minutes;
+        seconds -= Seconds;
+        milliseconds -= Milliseconds;
+        adjustTimeBackwards();
     }
 
     string Date() {
@@ -110,7 +122,6 @@ public:
         stream >> time;
         return time;
     }
-
 
     int daysInTheYear() {
         if(isLeapYear()) {
@@ -210,6 +221,27 @@ private:
                 years++;
                 months = 1;
             }
+        }
+    }
+
+    int abs(int x) { return x >= 0 ? x : -1*x; }
+
+    void adjustTimeBackwards() {
+        seconds -= milliseconds / 1000;
+        milliseconds = 1000 - (milliseconds % 1000);
+
+        if(seconds < 0) {
+            minutes -= abs(seconds / 60);
+            seconds = 60 - abs(seconds % 60);
+        }
+
+        if(minutes < 0) {
+            hours -= abs(minutes / 60);
+            minutes = 60 - abs(minutes % 60);
+        }
+
+        if(hours < 0) {
+
         }
     }
 
