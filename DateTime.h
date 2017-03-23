@@ -310,6 +310,11 @@ private:
             hours = 24 - abs(hours % 24);
         }
 
+        if(months < 0) {
+            years -= abs(months / 12);
+            months = 12 - abs(months % 12);
+        }
+
         if(days < 0) {
             days = abs(days);
             days -= previousDays;
