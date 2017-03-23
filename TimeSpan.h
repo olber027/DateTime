@@ -21,6 +21,41 @@ public:
     TimeSpan(int Year, int Month, int Day, int Hour, int Minute, int Second) :
             TimeSpan(Year, Month, Day, Hour, Minute, Second, 0) {}
 
+    int Year() { return years; }
+    int Month() { return months; }
+    int Day() { return days; }
+    int Hour() { return hours; }
+    int Minute() { return minutes; }
+    int Second() { return seconds; }
+    int Millisecond() { return milliseconds; }
+
+    void addYears(int Years) {
+        years += Years;
+    }
+    void addMonths(int Months) {
+        months += Months;
+    }
+    void addWeeks(int Weeks) {
+        days += 7*Weeks;
+    }
+    void addDays(int Days) {
+        days += Days;
+    }
+    void addHours(int Hours) {
+        hours += Hours;
+    }
+    void addMinutes(int Minutes) {
+        minutes += Minutes;
+    }
+    void addSeconds(int Seconds) {
+        seconds += Seconds;
+    }
+    void addMilliseconds(int millis) {
+        milliseconds += millis;
+    }
+
+
+
 private:
 
     void sanitizeData() {
