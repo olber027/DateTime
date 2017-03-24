@@ -54,8 +54,6 @@ public:
         milliseconds += millis;
     }
 
-
-
 private:
 
     void sanitizeData() {
